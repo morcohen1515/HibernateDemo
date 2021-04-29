@@ -84,3 +84,7 @@
 0:0:0:0:0:0:0:1 - - [29/Apr/2021:15:46:40 +0300] "GET /HibernateDemo/RegesterServlet?id=1&name=mor&password=15 HTTP/1.1" 200 68
 0:0:0:0:0:0:0:1 - - [29/Apr/2021:15:47:00 +0300] "GET /HibernateDemo/login.jsp HTTP/1.1" 200 2446
 0:0:0:0:0:0:0:1 - - [29/Apr/2021:15:47:01 +0300] "GET /HibernateDemo/LoginServlet?name=mor&password=15 HTTP/1.1" 200 68
+127.0.0.1 - - [29/Apr/2021:15:59:44 +0300] "GET / HTTP/1.1" 404 709
+0:0:0:0:0:0:0:1 - - [29/Apr/2021:15:59:45 +0300] "GET /HibernateDemo/login.jsp HTTP/1.1" 200 2443
+0:0:0:0:0:0:0:1 - - [29/Apr/2021:15:59:57 +0300] "GET /HibernateDemo/login.jsp HTTP/1.1" 200 2443
+0:0:0:0:0:0:0:1 - - [29/Apr/2021:16:00:04 +0300] "GET /HibernateDemo/regester.jsp HTTP/1.1" 200 2685
