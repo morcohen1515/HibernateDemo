@@ -1,0 +1,8 @@
+package il.ac.hit.costmanager;
+
+/**
+ * enum for cost item currency.
+ */
+public enum Currency {
+    ILS, USD, EURO, GBP
+}

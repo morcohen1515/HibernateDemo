@@ -1,0 +1,96 @@
+package io.ac.hit.costmanager;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.AnnotationConfiguration;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+
+public class HibernatDAO implements IModel{
+
+    SessionFactory factory = new AnnotationConfiguration().configure().buildSessionFactory();
+    
+	@Override
+	public User login(String userName, String password) throws CostManagerException {
+		 Session sess = factory.openSession();
+		 Transaction tx;
+		 try{
+		 	tx = sess.beginTransaction();
+			List<User> users = sess.createQuery("from User").list();
+			for(int i=0; i<users.size(); i++) {
+				System.out.println(i);
+				System.out.println(users.get(i).getName());
+				if(users.get(i).getName().equals(userName) && users.get(i).getPassword().equals(password)) {
+				 	tx.commit();
+					return users.get(i);
+				}	
+			}
+		 	tx.commit();
+		 	return null;
+		 }
+		 finally {
+		 	sess.close();
+		 }	
+	}
+
+    @Override
+    public void signUp(User u) throws CostManagerException {
+        Session sess = factory.openSession();
+        try{
+            sess.beginTransaction();
+            sess.save(u);
+            sess.getTransaction().commit();
+        }
+        finally {
+            sess.close();
+        }
+    }
+
+    @Override
+    public void addCostItem(Category.CostItem costItem) throws CostManagerException {
+
+    }
+
+    @Override
+    public void deleteCostItem(Category.CostItem costItem) throws CostManagerException {
+
+    }
+
+    @Override
+    public void newCategory(Category category) throws CostManagerException {
+
+        Session sess = factory.openSession();
+        try{
+            sess.beginTransaction();
+            sess.save(category);
+            sess.getTransaction().commit();
+        }
+        finally {
+            sess.close();
+        }
+    }
+
+    @Override
+    public void deleteCategory(Category category) throws CostManagerException {
+    }
+
+    @Override
+    public LinkedList<Category.CostItem> getDReport(Category category) throws CostManagerException {
+        return null;
+    }
+
+    @Override
+    public ArrayList<Category> getPieChart(Date dateX, Date dateY) throws CostManagerException {
+        return null;
+    }
+
+    @Override
+    public ArrayList<String> getAllCategoriesFromDB() throws CostManagerException{
+        return null;
+    }
+}

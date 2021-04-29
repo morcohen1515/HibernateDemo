@@ -1,0 +1,46 @@
+package io.ac.hit.costmanager;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+@WebServlet("/LoginServlet")
+public class LoginServlet extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+      
+    	PrintWriter out = response.getWriter();
+        String userName = request.getParameter("name");
+        String userPassword = request.getParameter("password");
+
+        if(userName!=null && userPassword!=null) {
+            try {
+                HibernatDAO dao = new HibernatDAO();
+                try {
+                	User u = new User();
+                    u = dao.login(userName, userPassword);
+                    out.println("<br/>user name is " + u.getName());
+                    out.println("<br/>user password is " + u.getPassword());
+                } catch (CostManagerException e) {
+                	System.out.println("its workkkkkkkk");
+                    e.getMessage();
+                }
+                out.println("<br/>user name is " + userName);
+                out.println("<br/>user password is " + userPassword);
+            } catch(NumberFormatException e) {
+                out.println("<br/>Problem with converting a string to double " + e.getMessage());
+            }
+        } else {
+            out.print("<br/>Please enter all the details");
+        }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    }
+}

@@ -1,0 +1,13 @@
+package il.ac.hit.productmanagment;
+
+import java.util.List;
+
+/**
+ * every module for this program needs to implement these basic methods.
+ */
+
+public interface IModel {
+	public User login(String userName, String password) throws CostManagerException;
+    public void signUp(User u) throws CostManagerException;
+    public List<User> chackIfUserExists() throws CostManagerException;
+}
